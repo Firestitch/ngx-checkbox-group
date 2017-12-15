@@ -1,0 +1,4 @@
+<fs-checkbox-group [(ngModel)]="selectedItemsHorizontal" name="selectedItemsHorizontal">
+<mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>
+</fs-checkbox-group>
+<p>{{ selectedItemsHorizontal | json }}</p>
