@@ -3,6 +3,8 @@ import { NgModule, Component, ViewEncapsulation } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material';
 import { FsCheckboxGroupModule }  from '@firestitch/checkboxgroup';
 
 @Component({
@@ -29,7 +31,7 @@ class AppComponent {
 @NgModule({
   bootstrap: [ AppComponent ],
   declarations: [ AppComponent ],
-  imports: [ BrowserModule, FsCheckboxGroupModule, BrowserAnimationsModule ]
+  imports: [ BrowserModule, FsCheckboxGroupModule, BrowserAnimationsModule, FormsModule, MatCheckboxModule ]
 })
 class AppModule {}
 
