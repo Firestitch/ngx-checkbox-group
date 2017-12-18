@@ -27,15 +27,20 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    this.iterableDiffer = this._iterableDiffers.find([]).create(null);
  };
 
- private onTouchedCallback: () => void = () => { };
- private onChangeCallback: (_: any) => void = () => { };
+ _onTouched = () => { };
+ _onChange = (value: any) => { };
+ onFocused = (event: any) => { };
+
+ // we initiate those functions to emit events outside the component
+ registerOnChange(fn: (value: any) => any): void { this._onChange = fn }
+ registerOnTouched(fn: () => any): void { this._onTouched = fn }
 
  ngDoCheck() {
    let changes = this.iterableDiffer.diff(this.innerValue);
    if (changes && this.innerValue) {
      this.contentChildren.toArray().forEach((input) => {
        let index = this.FsArray.indexOf(this.innerValue, input.value);
-       if(index !== -1) {
+       if (index !== -1) {
          input.checked = true;
        }else {
          input.checked = false;
@@ -50,14 +55,15 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    this.contentChildren.toArray().forEach((input, index) => {
      input.change
        .subscribe((value) => {
-         if(value.checked) {
+         if (value.checked) {
            this.innerValue.push(value.source.value);
          }else {
            let index = this.FsArray.indexOf(this.innerValue, input.value);
-           if(index !== -1) {
+           if (index !== -1) {
              this.innerValue.splice(index, 1);
            }
          }
+         this.writeValue(this.innerValue);
        });
    });
  }
@@ -66,19 +72,13 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    return JSON.stringify(obj1) === JSON.stringify(obj2);
  }
 
- writeValue(value: any) {
+ writeValue(value = []) {
 
    if (!this.isEquals(value, this.innerValue)) {
        this.innerValue = value;
    }
- }
 
- registerOnChange(fn: any) {
-   this.onChangeCallback = fn;
- }
-
- registerOnTouched(fn: any) {
-    this.onTouchedCallback = fn;
+   this._onChange(this.innerValue);
  }
 
  ngOnDestroy() {
