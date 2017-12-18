@@ -63,7 +63,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
              this.innerValue.splice(index, 1);
            }
          }
-         this.writeValue(this.innerValue);
+         this._onChange(this.innerValue);
        });
    });
  }
@@ -76,9 +76,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
 
    if (!this.isEquals(value, this.innerValue)) {
        this.innerValue = value;
+       this._onChange(this.innerValue);
    }
-
-   this._onChange(this.innerValue);
  }
 
  ngOnDestroy() {
