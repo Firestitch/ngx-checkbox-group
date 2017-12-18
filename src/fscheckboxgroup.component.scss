@@ -1,12 +1,12 @@
-fs-checkbox-group {
+:host {
     display: inline-block;
     position: relative;
     text-align: left;
     padding-bottom: 1.25em;
     padding-top: .4375em;
-}
 
-fs-checkbox-group mat-checkbox {
-    margin-left: 0;
-    margin-right: 16px;
+    mat-checkbox {
+        margin-left: 0;
+        margin-right: 16px;
+    }
 }
