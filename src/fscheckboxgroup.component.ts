@@ -55,6 +55,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    this.contentChildren.toArray().forEach((input, index) => {
      input.change
        .subscribe((value) => {
+         console.log('change', value);
          if (value.checked) {
            this.innerValue.push(value.source.value);
          }else {
@@ -73,10 +74,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
  }
 
  writeValue(value = []) {
-
    if (!this.isEquals(value, this.innerValue)) {
        this.innerValue = value;
-       this._onChange(this.innerValue);
    }
  }
 
