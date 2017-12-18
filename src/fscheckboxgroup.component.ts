@@ -8,6 +8,7 @@ import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
 @Component({
    selector: 'fs-checkbox-group',
    template: `<ng-content></ng-content>`,
+   styles: ['./fscheckboxgroup.component.scss'],
    providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
