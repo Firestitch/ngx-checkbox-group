@@ -1,5 +1,5 @@
 import { Component, Input, Output, Provider, EventEmitter, forwardRef,
-  ContentChildren, QueryList, IterableDiffers, DoCheck, AfterContentInit, OnDestroy } from '@angular/core';
+  ContentChildren, QueryList, IterableDiffers, ViewEncapsulation, DoCheck, AfterContentInit, OnDestroy } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material';
 import { FsArray } from '@firestitch/common';
@@ -8,8 +8,9 @@ import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
 @Component({
    selector: 'fs-checkbox-group',
    template: `<ng-content></ng-content>`,
-   styles: ['./fscheckboxgroup.component.scss'],
-   providers: [CHECKBOX_VALUE_ACCESSOR]
+   styleUrls: ['./fscheckboxgroup.component.scss'],
+   providers: [CHECKBOX_VALUE_ACCESSOR],
+   encapsulation: ViewEncapsulation.None
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
 
