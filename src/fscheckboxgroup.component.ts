@@ -7,7 +7,6 @@ import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
 
 @Component({
    selector: 'fs-checkbox-group',
-   template: `<ng-content></ng-content>`,
    template: `<div class="mat-form-field-label">{{label}}</div>
               <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
                   <ng-content></ng-content>
