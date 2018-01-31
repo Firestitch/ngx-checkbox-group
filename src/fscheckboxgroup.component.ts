@@ -7,12 +7,18 @@ import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
 
 @Component({
    selector: 'fs-checkbox-group',
-   template: `<ng-content></ng-content>`,
+   template: `<div class="mat-form-field-label">{{label}}</div>
+              <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
+                  <ng-content></ng-content>
+              </span>`,
+   styleUrls: [ 'fscheckboxgroup.component.scss' ],
    providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
 
  @Output('change') change: EventEmitter<any> = new EventEmitter<any>();
+ @Input('orientation') orientation: 'horizontal' | 'vertical' = 'horizontal';
+ @Input('label') label;
 
  @ContentChildren(MatCheckbox) public contentChildren: QueryList<MatCheckbox>;
 

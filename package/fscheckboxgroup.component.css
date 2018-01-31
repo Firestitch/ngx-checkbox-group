@@ -1,0 +1,22 @@
+:host {
+  position: relative;
+  padding-top: .84375em;
+  min-height: 30px;
+  display: inline-block; }
+
+.mat-form-field-label {
+  display: block;
+  top: 0;
+  transform: scale(0.75) translateZ(0.001px);
+  transform-origin: 0 0; }
+
+:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {
+  line-height: 29px; }
+
+:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox {
+  margin-left: 15px; }
+  :host ::ng-deep .checkboxes:not(.vertical) mat-checkbox:first-child {
+    margin-left: 0; }
+
+:host ::ng-deep .checkboxes.vertical mat-checkbox {
+  display: block; }
