@@ -263,7 +263,7 @@ webpackEmptyAsyncContext.id = "../tools lazy recursive";
 /***/ "./app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"overview\">\n    <h1>Overview</h1>\n    <li><b>npm run serve</b> Starts the playground web server</li>\n    <li><b>npm run package</b> Builds the NPM package for publishing</li>\n    <li><b>npm run demo</b> Builds the demo site</li>\n    <li><b>npm run lint</b> Validates the NPM package</li>    \n</div>\n\n<fs-component-examples>\n\n    <div class=\"example\">\n        <fs-component-example fsTitle=\"Horizontal Checkboxes\" fsHtml=\"...\" fsTs=\"...\" fsCss=\"...\">     \n            <horizontal></horizontal>\n        </fs-component-example>  \n    </div>  \n\n    <div class=\"example\">\n        <fs-component-example fsTitle=\"Vertical Checkboxes\" fsHtml=\"...\" fsTs=\"...\" fsCss=\"...\">     \n            <vertical></vertical>\n        </fs-component-example>  \n    </div>  \n\n</fs-component-examples>"
+module.exports = "<fs-component-examples>\n\n    <div class=\"example\">\n        <fs-example title=\"Horizontal Checkboxes\">\n            <horizontal></horizontal>\n        </fs-example>  \n    </div>  \n\n    <div class=\"example\">\n        <fs-example title=\"Vertical Checkboxes\">\n            <vertical></vertical>\n        </fs-example>  \n    </div>  \n\n</fs-component-examples>"
 
 /***/ }),
 
@@ -609,6 +609,7 @@ var fs_component_example_component_1 = __webpack_require__("./app/components/fs-
 var fs_component_examples_component_1 = __webpack_require__("./app/components/fs-component-examples/fs-component-examples.component.ts");
 var vertical_component_1 = __webpack_require__("./app/components/vertical/vertical.component.ts");
 var horizontal_component_1 = __webpack_require__("./app/components/horizontal/horizontal.component.ts");
+var example_1 = __webpack_require__("../node_modules/@firestitch/example/package/index.js");
 var PlaygroundModule = (function () {
     function PlaygroundModule() {
     }
@@ -621,7 +622,8 @@ var PlaygroundModule = (function () {
                 animations_1.BrowserAnimationsModule,
                 material_module_1.AppMaterialModule,
                 forms_1.FormsModule,
-                flex_layout_1.FlexLayoutModule
+                flex_layout_1.FlexLayoutModule,
+                example_1.FsExampleModule
             ],
             entryComponents: [],
             declarations: [

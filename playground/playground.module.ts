@@ -12,6 +12,7 @@ import { FsComponentExampleComponent } from './app/components/fs-component-examp
 import { FsComponentExamplesComponent } from './app/components/fs-component-examples/fs-component-examples.component';
 import { VerticalComponent } from './app/components/vertical/vertical.component';
 import { HorizontalComponent } from './app/components/horizontal/horizontal.component';
+import { FsExampleModule } from '@firestitch/example';
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -21,7 +22,8 @@ import { HorizontalComponent } from './app/components/horizontal/horizontal.comp
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FsExampleModule
   ],
   entryComponents: [
   ],
