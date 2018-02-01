@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("@angular/material"), require("@angular/common"), require("@angular/material/form-field"), require("@angular/core"), require("@angular/forms"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@angular/material", "@angular/common", "@angular/material/form-field", "@angular/core", "@angular/forms"], factory);
-	else {
-		var a = typeof exports === 'object' ? factory(require("@angular/material"), require("@angular/common"), require("@angular/material/form-field"), require("@angular/core"), require("@angular/forms")) : factory(root["@angular/material"], root["@angular/common"], root["@angular/material/form-field"], root["@angular/core"], root["@angular/forms"]);
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
+		define("@firestitch/checkboxgroup", ["@angular/material", "@angular/common", "@angular/material/form-field", "@angular/core", "@angular/forms"], factory);
+	else if(typeof exports === 'object')
+		exports["@firestitch/checkboxgroup"] = factory(require("@angular/material"), require("@angular/common"), require("@angular/material/form-field"), require("@angular/core"), require("@angular/forms"));
+	else
+		root["@firestitch/checkboxgroup"] = factory(root["@angular/material"], root["@angular/common"], root["@angular/material/form-field"], root["@angular/core"], root["@angular/forms"]);
 })(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE__angular_material__, __WEBPACK_EXTERNAL_MODULE__angular_common__, __WEBPACK_EXTERNAL_MODULE__angular_material_form_field__, __WEBPACK_EXTERNAL_MODULE__angular_core__, __WEBPACK_EXTERNAL_MODULE__angular_forms__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -571,7 +571,7 @@ var FsUtil = (function () {
         if (string === null || string === undefined) {
             string = '';
         }
-        return string.toString();
+        return (string).toString();
     };
     /**
      * @param {?} value
@@ -587,9 +587,11 @@ var FsUtil = (function () {
         options = options || {};
         return value === undefined ||
             value === null ||
+            value === false ||
             value === '' ||
-            (this.isObject(value) && (value.constructor.name == 'Object' && !Object.keys(value).length)) ||
-            !value.length ||
+            !this.string(value).length ||
+            (this.isObject(value) &&
+                (value.constructor.name === 'Object' && !Object.keys(value).length)) ||
             (!options.zero && (value === 0 || value === '0'));
     };
     /**
@@ -1073,7 +1075,7 @@ exports = module.exports = __webpack_require__("../node_modules/css-loader/lib/c
 
 
 // module
-exports.push([module.i, ":host {\n  position: relative;\n  padding-top: .84375em;\n  min-height: 30px;\n  display: inline-block;\n}\n\n.mat-form-field-label {\n  display: block;\n  top: 0;\n  -webkit-transform: scale(0.75) translateZ(0.001px);\n          transform: scale(0.75) translateZ(0.001px);\n  -webkit-transform-origin: 0 0;\n          transform-origin: 0 0;\n}\n\n:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {\n  line-height: 29px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox {\n  margin-left: 15px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox:first-child {\n  margin-left: 0;\n}\n\n:host ::ng-deep .checkboxes.vertical mat-checkbox {\n  display: block;\n}\n\n", "", {"version":3,"sources":["c:/Projects/fs-checkboxgroup/src/c:/Projects/fs-checkboxgroup/src/src/fscheckboxgroup.component.scss","c:/Projects/fs-checkboxgroup/src/c:/Projects/fs-checkboxgroup/fscheckboxgroup.component.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,sBAAA;EACA,iBAAA;EACA,sBAAA;CCCH;;ADED;EACI,eAAA;EACA,OAAA;EACA,mDAAA;UAAA,2CAAA;EACA,8BAAA;UAAA,sBAAA;CCCH;;ADED;EAEQ,kBAAA;CCAP;;ADFD;EAMQ,kBAAA;CCAP;;ADD8B;EAInB,eAAA;CCCX;;ADVD;EAcQ,eAAA;CCAP","file":"fscheckboxgroup.component.scss","sourcesContent":[":host {\r\n    position: relative;\r\n    padding-top: .84375em;\r\n    min-height: 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.mat-form-field-label {\r\n    display: block;\r\n    top: 0;    \r\n    transform: scale(.75) translateZ(.001px);\r\n    transform-origin: 0 0;\r\n}\r\n\r\n:host ::ng-deep {\r\n    .mat-checkbox-layout .mat-checkbox-label {\r\n        line-height: 29px;\r\n    }\r\n\r\n    .checkboxes:not(.vertical) mat-checkbox {\r\n        margin-left: 15px;\r\n\r\n        &:first-child {\r\n            margin-left: 0;\r\n        }\r\n    }\r\n\r\n    .checkboxes.vertical mat-checkbox {\r\n        display: block;\r\n    }\r\n}\r\n\r\n",":host {\n  position: relative;\n  padding-top: .84375em;\n  min-height: 30px;\n  display: inline-block;\n}\n\n.mat-form-field-label {\n  display: block;\n  top: 0;\n  transform: scale(0.75) translateZ(0.001px);\n  transform-origin: 0 0;\n}\n\n:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {\n  line-height: 29px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox {\n  margin-left: 15px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox:first-child {\n  margin-left: 0;\n}\n\n:host ::ng-deep .checkboxes.vertical mat-checkbox {\n  display: block;\n}\n\n"],"sourceRoot":""}]);
+exports.push([module.i, ":host {\n  position: relative;\n  padding-top: .84375em;\n  min-height: 30px;\n  display: inline-block;\n}\n\n.mat-form-field-label {\n  display: block;\n  top: 0;\n  -webkit-transform: scale(0.75) translateZ(0.001px);\n          transform: scale(0.75) translateZ(0.001px);\n  -webkit-transform-origin: 0 0;\n          transform-origin: 0 0;\n}\n\n:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {\n  line-height: 29px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox {\n  margin-left: 15px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox:first-child {\n  margin-left: 0;\n}\n\n:host ::ng-deep .checkboxes.vertical mat-checkbox {\n  display: block;\n}\n\n", "", {"version":3,"sources":["C:/Projects/fs-checkboxgroup/src/C:/Projects/fs-checkboxgroup/src/src/fscheckboxgroup.component.scss","C:/Projects/fs-checkboxgroup/src/C:/Projects/fs-checkboxgroup/fscheckboxgroup.component.scss"],"names":[],"mappings":"AAAA;EACI,mBAAA;EACA,sBAAA;EACA,iBAAA;EACA,sBAAA;CCCH;;ADED;EACI,eAAA;EACA,OAAA;EACA,mDAAA;UAAA,2CAAA;EACA,8BAAA;UAAA,sBAAA;CCCH;;ADED;EAEQ,kBAAA;CCAP;;ADFD;EAMQ,kBAAA;CCAP;;ADD8B;EAInB,eAAA;CCCX;;ADVD;EAcQ,eAAA;CCAP","file":"fscheckboxgroup.component.scss","sourcesContent":[":host {\r\n    position: relative;\r\n    padding-top: .84375em;\r\n    min-height: 30px;\r\n    display: inline-block;\r\n}\r\n\r\n.mat-form-field-label {\r\n    display: block;\r\n    top: 0;    \r\n    transform: scale(.75) translateZ(.001px);\r\n    transform-origin: 0 0;\r\n}\r\n\r\n:host ::ng-deep {\r\n    .mat-checkbox-layout .mat-checkbox-label {\r\n        line-height: 29px;\r\n    }\r\n\r\n    .checkboxes:not(.vertical) mat-checkbox {\r\n        margin-left: 15px;\r\n\r\n        &:first-child {\r\n            margin-left: 0;\r\n        }\r\n    }\r\n\r\n    .checkboxes.vertical mat-checkbox {\r\n        display: block;\r\n    }\r\n}\r\n\r\n",":host {\n  position: relative;\n  padding-top: .84375em;\n  min-height: 30px;\n  display: inline-block;\n}\n\n.mat-form-field-label {\n  display: block;\n  top: 0;\n  transform: scale(0.75) translateZ(0.001px);\n  transform-origin: 0 0;\n}\n\n:host ::ng-deep .mat-checkbox-layout .mat-checkbox-label {\n  line-height: 29px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox {\n  margin-left: 15px;\n}\n\n:host ::ng-deep .checkboxes:not(.vertical) mat-checkbox:first-child {\n  margin-left: 0;\n}\n\n:host ::ng-deep .checkboxes.vertical mat-checkbox {\n  display: block;\n}\n\n"],"sourceRoot":""}]);
 
 // exports
 
