@@ -15,21 +15,6 @@ exports.push([module.i, ":host {\n  position: relative;\n  padding-top: .84375em
 
 /***/ }),
 
-/***/ "../node_modules/css-loader/index.js?{\"sourceMap\":true}!../node_modules/postcss-loader/lib/index.js?{\"sourceMap\":true}!../node_modules/resolve-url-loader/index.js?{\"sourceMap\":true}!./app/components/fs-component-examples/fs-component-examples.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../node_modules/css-loader/lib/css-base.js")(true);
-// imports
-
-
-// module
-exports.push([module.i, "", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"fs-component-examples.component.css","sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-
 /***/ "../src/fscheckboxgroup.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -263,7 +248,7 @@ webpackEmptyAsyncContext.id = "../tools lazy recursive";
 /***/ "./app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<fs-component-examples>\n\n    <div class=\"example\">\n        <fs-example title=\"Horizontal Checkboxes\">\n            <horizontal></horizontal>\n        </fs-example>  \n    </div>  \n\n    <div class=\"example\">\n        <fs-example title=\"Vertical Checkboxes\">\n            <vertical></vertical>\n        </fs-example>  \n    </div>  \n\n</fs-component-examples>"
+module.exports = "\n\n<div class=\"example\">\n    <fs-example title=\"Horizontal Checkboxes\" componentName=\"horizontal\">\n        <horizontal></horizontal>\n    </fs-example>  \n</div>  \n\n<div class=\"example\">\n    <fs-example title=\"Vertical Checkboxes\" componentName=\"vertical\">\n        <vertical></vertical>\n    </fs-example>  \n</div>  "
 
 /***/ }),
 
@@ -292,94 +277,6 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
-
-
-/***/ }),
-
-/***/ "./app/components/fs-component-example/fs-component-example.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div>\r\n    <!-- <div>{{title}}</div>\r\n        source icon\r\n\r\n    <div>\r\n        <tabs>\r\n            <html><ts><css>\r\n    \r\n    <running-example> -->\r\n        <ng-content></ng-content>\r\n    \r\n</div>"
-
-/***/ }),
-
-/***/ "./app/components/fs-component-example/fs-component-example.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../node_modules/@angular/core/esm2015/core.js");
-var FsComponentExampleComponent = (function () {
-    function FsComponentExampleComponent() {
-    }
-    FsComponentExampleComponent = __decorate([
-        core_1.Component({
-            selector: 'fs-component-example',
-            template: __webpack_require__("./app/components/fs-component-example/fs-component-example.component.html")
-        })
-    ], FsComponentExampleComponent);
-    return FsComponentExampleComponent;
-}());
-exports.FsComponentExampleComponent = FsComponentExampleComponent;
-
-
-/***/ }),
-
-/***/ "./app/components/fs-component-examples/fs-component-examples.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__("../node_modules/css-loader/index.js?{\"sourceMap\":true}!../node_modules/postcss-loader/lib/index.js?{\"sourceMap\":true}!../node_modules/resolve-url-loader/index.js?{\"sourceMap\":true}!./app/components/fs-component-examples/fs-component-examples.component.css");
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-
-/***/ "./app/components/fs-component-examples/fs-component-examples.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<ng-content></ng-content>"
-
-/***/ }),
-
-/***/ "./app/components/fs-component-examples/fs-component-examples.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../node_modules/@angular/core/esm2015/core.js");
-var FsComponentExamplesComponent = (function () {
-    function FsComponentExamplesComponent() {
-    }
-    FsComponentExamplesComponent = __decorate([
-        core_1.Component({
-            selector: 'fs-component-examples',
-            template: __webpack_require__("./app/components/fs-component-examples/fs-component-examples.component.html"),
-            styles: [__webpack_require__("./app/components/fs-component-examples/fs-component-examples.component.css")]
-        })
-    ], FsComponentExamplesComponent);
-    return FsComponentExamplesComponent;
-}());
-exports.FsComponentExamplesComponent = FsComponentExamplesComponent;
 
 
 /***/ }),
@@ -605,8 +502,6 @@ var src_1 = __webpack_require__("../src/index.ts");
 var animations_1 = __webpack_require__("../node_modules/@angular/platform-browser/esm2015/animations.js");
 var flex_layout_1 = __webpack_require__("../node_modules/@angular/flex-layout/esm2015/flex-layout.js");
 var material_module_1 = __webpack_require__("./app/material.module.ts");
-var fs_component_example_component_1 = __webpack_require__("./app/components/fs-component-example/fs-component-example.component.ts");
-var fs_component_examples_component_1 = __webpack_require__("./app/components/fs-component-examples/fs-component-examples.component.ts");
 var vertical_component_1 = __webpack_require__("./app/components/vertical/vertical.component.ts");
 var horizontal_component_1 = __webpack_require__("./app/components/horizontal/horizontal.component.ts");
 var example_1 = __webpack_require__("../node_modules/@firestitch/example/package/index.js");
@@ -628,8 +523,6 @@ var PlaygroundModule = (function () {
             entryComponents: [],
             declarations: [
                 app_component_1.AppComponent,
-                fs_component_example_component_1.FsComponentExampleComponent,
-                fs_component_examples_component_1.FsComponentExamplesComponent,
                 horizontal_component_1.HorizontalComponent,
                 vertical_component_1.VerticalComponent
             ],
