@@ -28,5 +28,13 @@
     .checkboxes.vertical mat-checkbox {
         display: block;
     }
+
+    mat-hint {
+        font-size: 75%;
+        font-weight: 400;
+        line-height: 1.125;
+        display: block;
+        margin-top: 0.54166667em;
+    }
 }
 
