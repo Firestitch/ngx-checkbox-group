@@ -11,6 +11,7 @@ import { AppMaterialModule } from './app/material.module';
 import { VerticalComponent } from './app/components/vertical/vertical.component';
 import { HorizontalComponent } from './app/components/horizontal/horizontal.component';
 import { FsExampleModule } from '@firestitch/example';
+import { FsFormModule } from '@firestitch/form';
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -21,7 +22,8 @@ import { FsExampleModule } from '@firestitch/example';
     AppMaterialModule,
     FormsModule,
     FlexLayoutModule,
-    FsExampleModule
+    FsExampleModule,
+    FsFormModule
   ],
   entryComponents: [
   ],

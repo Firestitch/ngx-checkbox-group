@@ -3,6 +3,8 @@
   padding-top: .84375em;
   min-height: 30px;
   display: inline-block; }
+  :host.ng-invalid.ng-dirty /deep/ mat-hint {
+    display: none !important; }
 
 .mat-form-field-label {
   display: block;
