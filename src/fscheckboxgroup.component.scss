@@ -1,45 +1,52 @@
 :host {
+    
     position: relative;
     padding-top: .84375em;
-    min-height: 30px;
+    min-height: 29px;
     display: inline-block;
+    padding-bottom: 1.25em;
+
+    .mat-form-field-label {
+        display: block;
+        top: 0;    
+        transform: scale(.75) translateZ(.001px);
+        transform-origin: 0 0;
+    }
+
     &.ng-invalid.ng-dirty {
-        /deep/ mat-hint {
+        ::ng-deep mat-hint {
             display: none !important;
         }
     }
-}
 
-.mat-form-field-label {
-    display: block;
-    top: 0;    
-    transform: scale(.75) translateZ(.001px);
-    transform-origin: 0 0;
-}
+    ::ng-deep {
+        .mat-checkbox {
+            min-height: 29px;
+            display: inline-block;
+        }
+        
+        .checkboxes {
+            line-height: 29px;
 
-:host ::ng-deep {
-    .mat-checkbox-layout .mat-checkbox-label {
-        line-height: 29px;
-    }
+            &:not(.vertical) mat-checkbox {
+                margin-left: 15px;
 
-    .checkboxes:not(.vertical) mat-checkbox {
-        margin-left: 15px;
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+            
+            &.vertical mat-checkbox {
+                display: block;
+            }
+        }
 
-        &:first-child {
-            margin-left: 0;
+        mat-hint {
+            font-size: 75%;
+            font-weight: 400;
+            display: block;
+            margin-top: .54167em;
+            line-height: initial;
         }
     }
-
-    .checkboxes.vertical mat-checkbox {
-        display: block;
-    }
-
-    mat-hint {
-        font-size: 75%;
-        font-weight: 400;
-        line-height: 1.125;
-        display: block;
-        margin-top: 0.54166667em;
-    }
 }
-

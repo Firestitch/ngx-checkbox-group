@@ -1,8 +1,11 @@
-<form fsForm [fsFormBinding]="form" #form="ngForm">
+<form fsForm>
     <fs-checkbox-group [(ngModel)]="selected" fsFormRequired name="selected" label="Checkboxes">    
         <mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>
         <mat-hint>Hint hint hint!!!</mat-hint>
     </fs-checkbox-group>
+    <p>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </p>
 </form>
 
 <fieldset>

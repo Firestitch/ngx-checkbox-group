@@ -41,3 +41,5 @@ dist/*
 /dll
 /docs
 /demo
+/*.code-workspace
+/package

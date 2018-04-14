@@ -1,1 +1,0 @@
-{"version":3,"file":"fscheckboxgroup.value-accessor.js","sourceRoot":"","sources":["../build/fscheckboxgroup.value-accessor.ts"],"names":[],"mappings":";;AAAA,yEAAuE;AACvE,sCAAqD;AACrD,wCAAmD;AAEtC,QAAA,uBAAuB,GAAa;IAC/C,OAAO,EAAE,yBAAiB;IAC1B,WAAW,EAAE,iBAAU,CAAC,cAAM,OAAA,oDAAwB,EAAxB,CAAwB,CAAC;IACvD,KAAK,EAAE,IAAI;CACZ,CAAC"}
