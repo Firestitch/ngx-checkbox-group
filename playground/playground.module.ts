@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FsCheckboxGroupModule } from '../src';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppMaterialModule } from './app/material.module';
 import { VerticalComponent } from './app/components/vertical/vertical.component';
 import { HorizontalComponent } from './app/components/horizontal/horizontal.component';
