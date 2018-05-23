@@ -16,51 +16,52 @@ import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
 
- @Output('change') change: EventEmitter<any> = new EventEmitter<any>();
- @Input('orientation') orientation: 'horizontal' | 'vertical' = 'horizontal';
- @Input('label') label;
+  @Output('change') change: EventEmitter<any> = new EventEmitter<any>();
+  @Input('orientation') orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Input('label') label;
 
- @ContentChildren(MatCheckbox) public contentChildren: QueryList<MatCheckbox>;
+  @ContentChildren(MatCheckbox) public contentChildren: QueryList<MatCheckbox>;
 
- private innerValue: any[];
+  private innerValue: any[];
 
- iterableDiffer;
+  public iterableDiffer;
 
- constructor(
-   public FsArray: FsArray,
-   private _iterableDiffers: IterableDiffers
- ) {
-   this.iterableDiffer = this._iterableDiffers.find([]).create(null);
- };
+  constructor(
+    public fsArray: FsArray,
+    private iterableDiffers: IterableDiffers
+  ) {
+    this.iterableDiffer = this.iterableDiffers.find([]).create(null);
+  };
 
  private onTouchedCallback: () => void = () => { };
  private onChangeCallback: (_: any) => void = () => { };
 
  ngDoCheck() {
-   let changes = this.iterableDiffer.diff(this.innerValue);
+   const changes = this.iterableDiffer.diff(this.innerValue);
    if (changes && this.innerValue) {
      this.contentChildren.toArray().forEach((input) => {
-       let index = this.FsArray.indexOf(this.innerValue, input.value);
-       if(index !== -1) {
+       const index = this.fsArray.indexOf(this.innerValue, input.value);
+       if (index !== -1) {
          input.checked = true;
-       }else {
+       } else {
          input.checked = false;
        }
      });
 
+     this.onChangeCallback(this.innerValue);
      this.change.emit(this.innerValue);
    }
  }
 
  ngAfterContentInit() {
-   this.contentChildren.toArray().forEach((input, index) => {
+   this.contentChildren.toArray().forEach((input) => {
      input.change
        .subscribe((value) => {
-         if(value.checked) {
+         if (value.checked) {
            this.innerValue.push(value.source.value);
-         }else {
-           let index = this.FsArray.indexOf(this.innerValue, input.value);
-           if(index !== -1) {
+         } else {
+           const index = this.fsArray.indexOf(this.innerValue, input.value);
+           if (index !== -1) {
              this.innerValue.splice(index, 1);
            }
          }
