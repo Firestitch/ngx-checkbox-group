@@ -1,8 +1,6 @@
 :host {
     
     position: relative;
-    padding-top: .84375em;
-    min-height: 29px;
     display: inline-block;
     padding-bottom: 1.25em;
 
@@ -11,6 +9,7 @@
         top: 0;    
         transform: scale(.75);
         transform-origin: 0 0;
+        position: relative;
     }
 
     &.ng-invalid.ng-dirty {
@@ -20,13 +19,20 @@
     }
 
     ::ng-deep {
+
+        .mat-form-field-subscript-wrapper {
+          position: absolute;
+          margin-top: 0.54167em;
+          top: calc(100% - 1.66667em);
+        }
+    
         .mat-checkbox {
-            min-height: 29px;
+            min-height: 26px;
             display: inline-block;
         }
         
         .checkboxes {
-            line-height: 29px;
+            line-height: 3px;
 
             &:not(.vertical) mat-checkbox {
                 margin-right: 15px;
@@ -43,10 +49,10 @@
 
         mat-hint {
             font-size: 75%;
-            font-weight: 400;
+            position: absolute;
             display: block;
-            margin-top: .54167em;
-            line-height: initial;
+            margin-top: 0.54167em;
+            top: calc(100% - 1.66667em);
         }
     }
 }

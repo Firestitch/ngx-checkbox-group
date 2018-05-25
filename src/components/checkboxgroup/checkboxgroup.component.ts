@@ -3,15 +3,12 @@ import { Component, Input, Output, Provider, EventEmitter, forwardRef,
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material';
 import { FsArray } from '@firestitch/common';
-import { CHECKBOX_VALUE_ACCESSOR } from './fscheckboxgroup.value-accessor';
+import { CHECKBOX_VALUE_ACCESSOR } from './../../fscheckboxgroup.value-accessor';
 
 @Component({
    selector: 'fs-checkbox-group',
-   template: `<div class="mat-form-field-label">{{label}}</div>
-              <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
-                  <ng-content></ng-content>
-              </span>`,
-   styleUrls: [ 'fscheckboxgroup.component.scss' ],
+   templateUrl: './checkboxgroup.component.html',
+   styleUrls: [ './checkboxgroup.component.scss' ],
    providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {

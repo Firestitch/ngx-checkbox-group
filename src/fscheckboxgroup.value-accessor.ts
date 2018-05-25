@@ -1,4 +1,4 @@
-import { FsCheckboxGroupComponent } from './fscheckboxgroup.component';
+import { FsCheckboxGroupComponent } from './components/checkboxgroup/checkboxgroup.component';
 import { Provider, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
