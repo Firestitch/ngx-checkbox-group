@@ -1,17 +1,21 @@
-import './../tools/assets/playground.scss';
-
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app/app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { FsCheckboxGroupModule } from '../src';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppMaterialModule } from './app/material.module';
-import { VerticalComponent } from './app/components/vertical/vertical.component';
-import { HorizontalComponent } from './app/components/horizontal/horizontal.component';
+
+import { FsCheckboxGroupModule } from '@firestitch/checkboxgroup';
 import { FsExampleModule } from '@firestitch/example';
 import { FsFormModule } from '@firestitch/form';
+import { FsMessageModule } from '@firestitch/message';
+
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppComponent } from './app.component';
+import { AppMaterialModule } from './material.module';
+import { VerticalComponent } from './components/vertical/vertical.component';
+import { HorizontalComponent } from './components/horizontal/horizontal.component';
+
 
 @NgModule({
   bootstrap: [ AppComponent ],
@@ -22,7 +26,10 @@ import { FsFormModule } from '@firestitch/form';
     AppMaterialModule,
     FormsModule,
     FlexLayoutModule,
-    FsExampleModule,
+    FsExampleModule.forRoot(),
+    FsExampleModule.forRoot(),
+    FsMessageModule.forRoot(),
+    ToastrModule.forRoot({ preventDuplicates: true }),
     FsFormModule
   ],
   entryComponents: [

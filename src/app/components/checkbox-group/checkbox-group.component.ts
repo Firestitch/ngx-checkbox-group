@@ -1,32 +1,55 @@
-import { Component, Input, Output, Provider, EventEmitter, forwardRef,
-  ContentChildren, QueryList, IterableDiffers, DoCheck, AfterContentInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ContentChildren,
+  QueryList,
+  IterableDiffers,
+  DoCheck,
+  AfterContentInit,
+  OnDestroy,
+  Provider,
+  forwardRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material';
-import { FsArray } from '@firestitch/common';
-import { CHECKBOX_VALUE_ACCESSOR } from './../../fscheckboxgroup.value-accessor';
+
+import { indexOf } from '@firestitch/common';
+
+
+export const CHECKBOX_VALUE_ACCESSOR: Provider = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => FsCheckboxGroupComponent),
+  multi: true
+};
+
 
 @Component({
    selector: 'fs-checkbox-group',
-   templateUrl: './checkboxgroup.component.html',
-   styleUrls: [ './checkboxgroup.component.scss' ],
+   templateUrl: './checkbox-group.component.html',
+   styleUrls: [ './checkbox-group.component.scss' ],
    providers: [CHECKBOX_VALUE_ACCESSOR]
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
 
-  @Output('change') change: EventEmitter<any> = new EventEmitter<any>();
-  @Input('orientation') orientation: 'horizontal' | 'vertical' = 'horizontal';
-  @Input('label') label;
+  @Output('change')
+  public change: EventEmitter<any> = new EventEmitter<any>();
 
-  @ContentChildren(MatCheckbox) public contentChildren: QueryList<MatCheckbox>;
+  @Input('orientation')
+  public orientation: 'horizontal' | 'vertical' = 'horizontal';
+
+  @Input('label')
+  public label;
+
+  @ContentChildren(MatCheckbox)
+  public contentChildren: QueryList<MatCheckbox>;
 
   private innerValue: any[];
 
   public iterableDiffer;
 
-  constructor(
-    public fsArray: FsArray,
-    private iterableDiffers: IterableDiffers
-  ) {
+  constructor(private iterableDiffers: IterableDiffers) {
     this.iterableDiffer = this.iterableDiffers.find([]).create(null);
   };
 
@@ -37,7 +60,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    const changes = this.iterableDiffer.diff(this.innerValue);
    if (changes && this.innerValue) {
      this.contentChildren.toArray().forEach((input) => {
-       const index = this.fsArray.indexOf(this.innerValue, input.value);
+       const index = indexOf(this.innerValue, input.value);
        if (index !== -1) {
          input.checked = true;
        } else {
@@ -50,14 +73,14 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    }
  }
 
- ngAfterContentInit() {
+ public ngAfterContentInit() {
    this.contentChildren.toArray().forEach((input) => {
      input.change
        .subscribe((value) => {
          if (value.checked) {
            this.innerValue.push(value.source.value);
          } else {
-           const index = this.fsArray.indexOf(this.innerValue, input.value);
+           const index = indexOf(this.innerValue, input.value);
            if (index !== -1) {
              this.innerValue.splice(index, 1);
            }
@@ -66,26 +89,26 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    });
  }
 
- isEquals(obj1, obj2): boolean {
+ public isEquals(obj1, obj2): boolean {
    return JSON.stringify(obj1) === JSON.stringify(obj2);
  }
 
- writeValue(value: any) {
+ public writeValue(value: any) {
 
    if (!this.isEquals(value, this.innerValue)) {
        this.innerValue = value;
    }
  }
 
- registerOnChange(fn: any) {
+ public registerOnChange(fn: any) {
    this.onChangeCallback = fn;
  }
 
- registerOnTouched(fn: any) {
+ public registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
  }
 
- ngOnDestroy() {
+ public ngOnDestroy() {
    this.contentChildren.toArray().forEach((input) => {
      input.change.unsubscribe();
    });

@@ -1,10 +1,9 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FsCheckboxGroupComponent } from './components/checkboxgroup/checkboxgroup.component';
-import { MatDialogModule } from '@angular/material';
 import { FsCommonModule } from '@firestitch/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { FsCheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 
 
 @NgModule({
@@ -22,11 +21,4 @@ exports: [
   FsCheckboxGroupComponent
 ]
 })
-export class FsCheckboxGroupModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: FsCheckboxGroupModule,
-      providers: []
-    };
-  }
-}
+export class FsCheckboxGroupModule {}
