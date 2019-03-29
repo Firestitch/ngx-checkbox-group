@@ -3,20 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FsCommonModule } from '@firestitch/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { FsLabelModule } from '@firestitch/label';
 import { FsCheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 
 
 @NgModule({
 imports: [
     CommonModule,
-    MatFormFieldModule,
     MatInputModule,
-    FsCommonModule
+    FsCommonModule,
+    FsLabelModule
+
 ],
 declarations: [
     FsCheckboxGroupComponent
 ],
-providers: [],
 exports: [
   FsCheckboxGroupComponent
 ]

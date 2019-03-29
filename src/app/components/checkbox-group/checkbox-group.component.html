@@ -1,5 +1,11 @@
-<div class="mat-form-field-label">{{label}}</div>
-<span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
+<fs-label-field>
+  <fs-label>{{label}}</fs-label>
+  <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
     <ng-content select="mat-checkbox"></ng-content>
-</span>
-<ng-content select="mat-hint"></ng-content>
+  </span>
+  <div class="fs-form-message-wrapper">
+    <div class="fs-form-hint-wrapper">
+      <ng-content select="mat-hint"></ng-content>
+    </div>
+  </div>
+</fs-label-field>

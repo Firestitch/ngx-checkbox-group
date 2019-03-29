@@ -1,36 +1,25 @@
 :host {
-    
     position: relative;
-    display: inline-block;
-    padding-bottom: 1.25em;
-
-    .mat-form-field-label {
-        display: block;
-        top: 0;    
-        transform: scale(.75);
-        transform-origin: 0 0;
-        position: relative;
-    }
-
-    &.ng-invalid.ng-dirty {
-        ::ng-deep mat-hint {
-            display: none !important;
-        }
-    }
+    display: inline-flex;
 
     ::ng-deep {
 
-        .mat-form-field-subscript-wrapper {
-          position: absolute;
-          margin-top: 0.54167em;
-          top: calc(100% - 1.66667em);
+        fs-label-field {
+            position: relative;
         }
-    
+
+        .fs-form-message-wrapper {
+        position: absolute;
+        top: unset;
+        margin-top: 3px;
+        font-size: 75%;
+        }
+
         .mat-checkbox {
             min-height: 26px;
             display: inline-block;
         }
-        
+
         .checkboxes {
             line-height: 3px;
 
@@ -41,18 +30,10 @@
                     margin-right: 0;
                 }
             }
-            
+
             &.vertical mat-checkbox {
                 display: block;
             }
-        }
-
-        mat-hint {
-            font-size: 75%;
-            position: absolute;
-            display: block;
-            margin-top: 0.54167em;
-            top: calc(100% - 1.66667em);
         }
     }
 }
