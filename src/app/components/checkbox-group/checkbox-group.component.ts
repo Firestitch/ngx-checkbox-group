@@ -10,7 +10,8 @@ import {
   AfterContentInit,
   OnDestroy,
   Provider,
-  forwardRef
+  forwardRef,
+  HostBinding
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material';
@@ -41,6 +42,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
 
   @Input('label')
   public label;
+
+  @HostBinding('class.fs-form-wrapper') formWrapper = true;
 
   @ContentChildren(MatCheckbox)
   public contentChildren: QueryList<MatCheckbox>;

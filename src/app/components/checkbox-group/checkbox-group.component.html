@@ -1,11 +1,13 @@
 <fs-label-field>
-  <fs-label>{{label}}</fs-label>
+  <fs-label class="fs-form-label">{{label}}</fs-label>
   <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
     <ng-content select="mat-checkbox"></ng-content>
   </span>
-  <div class="fs-form-message-wrapper">
-    <div class="fs-form-hint-wrapper">
-      <ng-content select="mat-hint"></ng-content>
+  <fs-label-message>
+    <div class="fs-form-message">
+      <div class="fs-form-hint">
+        <ng-content select="mat-hint"></ng-content>
+      </div>
     </div>
-  </div>
+  </fs-label-message>
 </fs-label-field>
