@@ -2,7 +2,7 @@
   "name": "@firestitch/checkboxgroup",
   "title": "Checkbox Group",
   "description": "@firestitch/checkboxgroup",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-checkbox-group"
@@ -69,7 +69,6 @@
     "node": ">=6.0.0"
   },
   "peerDependencies": {
-    "@firestitch/common": ">=7.0.0",
     "@firestitch/label": ">=7.1.2"
   }
 }

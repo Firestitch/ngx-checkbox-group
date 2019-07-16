@@ -16,21 +16,16 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material';
 
-import { indexOf } from '@firestitch/common';
-
-
-export const CHECKBOX_VALUE_ACCESSOR: Provider = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => FsCheckboxGroupComponent),
-  multi: true
-};
-
 
 @Component({
    selector: 'fs-checkbox-group',
    templateUrl: './checkbox-group.component.html',
    styleUrls: [ './checkbox-group.component.scss' ],
-   providers: [CHECKBOX_VALUE_ACCESSOR]
+   providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => FsCheckboxGroupComponent),
+    multi: true
+  }]
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDestroy {
 
@@ -63,7 +58,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
    const changes = this.iterableDiffer.diff(this.innerValue);
    if (changes && this.innerValue) {
      this.contentChildren.toArray().forEach((input) => {
-       const index = indexOf(this.innerValue, input.value);
+       const index = this.innerValue.indexOf(input.value);
        if (index !== -1) {
          input.checked = true;
        } else {
@@ -83,7 +78,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, DoCheck, OnDe
          if (value.checked) {
            this.innerValue.push(value.source.value);
          } else {
-           const index = indexOf(this.innerValue, input.value);
+           const index = this.innerValue.indexOf(input.value);
            if (index !== -1) {
              this.innerValue.splice(index, 1);
            }
