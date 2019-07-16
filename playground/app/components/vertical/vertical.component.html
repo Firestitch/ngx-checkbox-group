@@ -1,9 +1,13 @@
 
-<fs-checkbox-group [(ngModel)]="selected" name="selected" label="Checkboxes" orientation="vertical">
-    <mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>
+<fs-checkbox-group
+  [(ngModel)]="selected"
+  name="selected"
+  label="Checkboxes"
+  orientation="vertical">
+      <mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>
 </fs-checkbox-group>
 
 <fieldset>
-    <legend>Selected</legend>
-    {{ selected | json }}
+  <legend>Selected</legend>
+  {{ selected | json }}
 </fieldset>

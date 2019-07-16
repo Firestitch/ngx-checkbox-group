@@ -1,8 +1,13 @@
-
-<fs-checkbox-group [(ngModel)]="selected" name="selected" label="Checkboxes">
-  <mat-checkbox *ngFor="let item of items" [value]="item.id">{{ item.name }}</mat-checkbox>
-  <mat-hint>Hint hint hint!!!</mat-hint>
-</fs-checkbox-group>
+<form fsForm>
+  <fs-checkbox-group
+    [(ngModel)]="selected"
+    name="selected"
+    label="Checkboxes"
+    [fsFormRequired]="true">
+    <mat-checkbox *ngFor="let item of items" [value]="item.id">{{ item.name }}</mat-checkbox>
+    <mat-hint>Hint hint hint!!!</mat-hint>
+  </fs-checkbox-group>
+</form>
 
 <fieldset>
   <legend>Selected</legend>
