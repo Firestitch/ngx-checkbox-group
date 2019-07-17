@@ -4,7 +4,11 @@
   name="selected"
   label="Checkboxes"
   orientation="vertical">
-      <mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>
+    <mat-checkbox
+      *ngFor="let item of items"
+      [value]="item">
+        {{ item.name }}
+      </mat-checkbox>
 </fs-checkbox-group>
 
 <fieldset>

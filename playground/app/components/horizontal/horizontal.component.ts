@@ -6,13 +6,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorizontalComponent implements OnInit {
 
-  selected: object[] = [];
+  selected: number[] = [1];
 
   items = [];
 
   ngOnInit() {
 
-    // Simulate API deplay
     setTimeout(() => {
         this.items = [
         { name: 'Item 1', id: 1 },

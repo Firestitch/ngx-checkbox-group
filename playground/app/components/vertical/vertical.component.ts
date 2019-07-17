@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class VerticalComponent {
 
-  selected: object[] = [];
+  selected: any[] = [];
 
   items = [
       { name: 'Item 1', id: 1 },
