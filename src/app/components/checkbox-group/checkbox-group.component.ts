@@ -1,22 +1,24 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ContentChildren,
-  QueryList,
-  IterableDiffers,
-  DoCheck,
   AfterContentInit,
-  OnDestroy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  EventEmitter,
   forwardRef,
-  HostBinding
+  HostBinding,
+  Input,
+  IterableDiffers,
+  OnDestroy,
+  Output,
+  QueryList
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
+
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { remove, isEqual } from 'lodash-es';
+
+import { isEqual, remove } from 'lodash-es';
 
 
 @Component({
@@ -27,7 +29,8 @@ import { remove, isEqual } from 'lodash-es';
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => FsCheckboxGroupComponent),
     multi: true
-  }]
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
 
@@ -49,7 +52,10 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
   private _destroy$ = new Subject();
   private _differChildren;
 
-  constructor(private iterableDiffers: IterableDiffers) {
+  constructor(
+    private iterableDiffers: IterableDiffers,
+    private _cdRef: ChangeDetectorRef,
+  ) {
     this._differChildren = this.iterableDiffers.find([]).create(null);
   };
 
@@ -96,6 +102,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
   private _addCheckbox(input) {
 
     this._toggleInput(input);
+    this._cdRef.markForCheck();
 
     input.change
     .pipe(
@@ -110,8 +117,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
         }
 
       } else {
-        remove(this.innerValue, (value) => {
-          return isEqual(value, input.value);
+        remove(this.innerValue, (v) => {
+          return isEqual(v, input.value);
         });
       }
 
