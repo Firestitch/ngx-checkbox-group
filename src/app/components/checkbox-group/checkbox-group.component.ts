@@ -13,7 +13,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatCheckbox } from '@angular/material';
+import { MatCheckbox } from '@angular/material/checkbox';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { remove, isEqual } from 'lodash-es';
