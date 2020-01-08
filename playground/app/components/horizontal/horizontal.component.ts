@@ -21,4 +21,8 @@ export class HorizontalComponent implements OnInit {
       ];
     }, 50);
   }
+
+  public compareWith(o1, o2) {
+    return o1 && o2 && o1 === o2.id;
+  }
 }

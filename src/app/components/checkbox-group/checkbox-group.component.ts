@@ -12,7 +12,7 @@ import {
   Output,
   QueryList
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 
 import { Subject } from 'rxjs';
@@ -32,7 +32,7 @@ import { isEqual, remove } from 'lodash-es';
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
+export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy {
 
   @Output('change')
   public change: EventEmitter<any> = new EventEmitter<any>();
@@ -42,6 +42,12 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
 
   @Input('label')
   public label;
+
+  @Input()
+  public compareWith = (o1: any, o2: any) => {
+    debugger;
+    return isEqual(o1, o2)
+  };
 
   @HostBinding('class.fs-form-wrapper') formWrapper = true;
 
@@ -95,7 +101,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
 
   private _valueExists(inputValue) {
     return this.innerValue.find((value) => {
-      return isEqual(value, inputValue);
+      return this.compareWith(value, inputValue);
     }) !== undefined;
   }
 
@@ -125,10 +131,6 @@ export class FsCheckboxGroupComponent implements AfterContentInit, OnDestroy {
       this.onChangeCallback(this.innerValue);
       this.change.emit(this.innerValue);
     });
-  }
-
-  public isEquals(obj1, obj2): boolean {
-    return JSON.stringify(obj1) === JSON.stringify(obj2);
   }
 
   public writeValue(value: any) {
