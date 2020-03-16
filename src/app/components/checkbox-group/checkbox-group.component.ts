@@ -45,7 +45,6 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
 
   @Input()
   public compareWith = (o1: any, o2: any) => {
-    debugger;
     return isEqual(o1, o2)
   };
 
