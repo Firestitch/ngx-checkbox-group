@@ -3,6 +3,7 @@
     [(ngModel)]="selected"
     [compareWith]="compareWith"
     name="selected"
+    [disabled]="disabled"
     label="Checkboxes"
     [fsFormRequired]="true">
     <mat-checkbox *ngFor="let item of items" [value]="item">{{ item.name }}</mat-checkbox>

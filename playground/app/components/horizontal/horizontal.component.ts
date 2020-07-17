@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorizontalComponent implements OnInit {
 
-  selected: number[] = [1];
-
-  items = [];
+  public selected: number[] = [1];
+  public disabled = false;
+  public items = [];
 
   ngOnInit() {
 

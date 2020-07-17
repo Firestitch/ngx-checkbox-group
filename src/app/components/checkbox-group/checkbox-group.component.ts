@@ -10,7 +10,9 @@ import {
   IterableDiffers,
   OnDestroy,
   Output,
-  QueryList
+  QueryList,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -32,16 +34,19 @@ import { isEqual, remove } from 'lodash-es';
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy {
+export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy, OnChanges {
 
-  @Output('change')
+  @Output()
   public change: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input('orientation')
+  @Input()
   public orientation: 'horizontal' | 'vertical' = 'horizontal';
 
-  @Input('label')
+  @Input()
   public label;
+
+  @Input()
+  public disabled = false;
 
   @Input()
   public compareWith = (o1: any, o2: any) => {
@@ -66,6 +71,14 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
 
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.disabled) {
+      this.contentChildren.forEach((checkbox: MatCheckbox) => {
+        checkbox.disabled = this.disabled;
+      });
+    }
+  }
 
   public ngAfterContentInit() {
 
@@ -105,6 +118,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   }
 
   private _addCheckbox(input) {
+
+    input.disabled = this.disabled;
 
     this._toggleInput(input);
     this._cdRef.markForCheck();
