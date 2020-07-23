@@ -73,7 +73,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   private onChangeCallback: (_: any) => void = () => { };
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.disabled) {
+    if (changes.disabled && this.contentChildren) {
       this.contentChildren.forEach((checkbox: MatCheckbox) => {
         checkbox.disabled = this.disabled;
       });
