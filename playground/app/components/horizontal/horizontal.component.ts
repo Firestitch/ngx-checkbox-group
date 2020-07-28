@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HorizontalComponent implements OnInit {
 
-  public selected: number[] = [1];
+  public selected: any[] = [
+    { name: 'Item 1', id: 1 },
+  ];
   public disabled = false;
   public items = [];
 
@@ -23,6 +25,6 @@ export class HorizontalComponent implements OnInit {
   }
 
   public compareWith(o1, o2) {
-    return o1 && o2 && o1 === o2.id;
+    return o1 && o2 && o1.id === o2.id;
   }
 }

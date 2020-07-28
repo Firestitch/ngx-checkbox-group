@@ -137,8 +137,8 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
         }
 
       } else {
-        remove(this.innerValue, (v) => {
-          return isEqual(v, input.value);
+        remove(this.innerValue, (item) => {
+          return this.compareWith(item, input.value);
         });
       }
 
