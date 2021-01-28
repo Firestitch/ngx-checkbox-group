@@ -1,5 +1,6 @@
 <fs-label-field>
   <fs-label *ngIf="label" class="fs-form-label">{{label}}</fs-label>
+  <ng-content></ng-content>
   <span class="checkboxes" [ngClass]="{ vertical: orientation=='vertical' }">
     <ng-content select="mat-checkbox"></ng-content>
   </span>
