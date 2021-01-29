@@ -37,7 +37,7 @@ import { isEqual, remove } from 'lodash-es';
 export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy, OnChanges {
 
   @Output()
-  public change: EventEmitter<any> = new EventEmitter<any>();
+  public change: EventEmitter<unknown[]> = new EventEmitter<unknown[]>();
 
   @Input()
   public orientation: 'horizontal' | 'vertical' = 'horizontal';
@@ -58,7 +58,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   @ContentChildren(MatCheckbox)
   public contentChildren: QueryList<MatCheckbox>;
 
-  private innerValue: any[];
+  private innerValue: unknown[] = [];
   private _destroy$ = new Subject();
   private _differChildren;
 
@@ -148,8 +148,15 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   }
 
   public writeValue(value: any) {
-
-    this.innerValue = value;
+    if (Array.isArray(value)) {
+      this.innerValue = value;
+    } else {
+      if (value !== undefined && value !== null) {
+        this.innerValue = [ value ];
+      } else {
+        this.innerValue = [];
+      }
+    }
 
     if (this.contentChildren) {
       this.contentChildren.toArray().forEach((input) => {
