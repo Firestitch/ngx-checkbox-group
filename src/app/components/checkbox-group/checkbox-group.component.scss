@@ -1,32 +1,51 @@
 :host {
-    position: relative;
+  position: relative;
 
-    ::ng-deep {
+  ::ng-deep {
 
-        fs-label-field {
-            position: relative;
-            width: 100%;
+    fs-label-field {
+      position: relative;
+      width: 100%;
+    }
+
+    .checkboxes {
+      &:not(.vertical) mat-checkbox {
+        margin-right: 15px;
+
+        &:last-child {
+          margin-right: 0;
         }
+      }
+
+      &.vertical {
+        display: block;
 
         .mat-checkbox {
-            min-height: 26px;
-            display: inline-block;
+          display: block;
+          margin: 10px 0;
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
         }
-
-        .checkboxes {
-            line-height: 3px;
-
-            &:not(.vertical) mat-checkbox {
-                margin-right: 15px;
-
-                &:last-child {
-                    margin-right: 0;
-                }
-            }
-
-            &.vertical mat-checkbox {
-                display: block;
-            }
-        }
+      }
     }
+
+    .mat-checkbox-layout {
+      white-space: normal;
+      align-items: flex-start;
+
+      .mat-checkbox-inner-container {
+        margin-top: unset;;
+      }
+
+      .mat-checkbox-label {
+        line-height: normal;
+      }
+    }
+  }
 }

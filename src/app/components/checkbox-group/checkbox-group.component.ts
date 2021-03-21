@@ -40,7 +40,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   public change: EventEmitter<unknown[]> = new EventEmitter<unknown[]>();
 
   @Input()
-  public orientation: 'horizontal' | 'vertical' = 'horizontal';
+  public orientation: 'horizontal' | 'vertical' = 'vertical';
 
   @Input()
   public label;
