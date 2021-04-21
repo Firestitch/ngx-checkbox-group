@@ -43,6 +43,9 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   public orientation: 'horizontal' | 'vertical' = 'vertical';
 
   @Input()
+  public position: 'top' | 'center' = 'top';
+
+  @Input()
   public label;
 
   @Input()
