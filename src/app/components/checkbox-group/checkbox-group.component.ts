@@ -49,7 +49,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   public label;
 
   @Input()
-  public disabled = false;
+  public disabled: boolean = null;
 
   @Input()
   public compareWith = (o1: any, o2: any) => {
@@ -76,7 +76,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   private onChangeCallback: (_: any) => void = () => { };
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.disabled && this.contentChildren) {
+    if (this.disabled !== null && changes.disabled && this.contentChildren) {
       this.contentChildren.forEach((checkbox: MatCheckbox) => {
         checkbox.disabled = this.disabled;
       });
@@ -122,7 +122,9 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
 
   private _addCheckbox(input) {
 
-    input.disabled = this.disabled;
+    if (this.disabled !== null) {
+      input.disabled = this.disabled;
+    }
 
     this._toggleInput(input);
     this._cdRef.markForCheck();
