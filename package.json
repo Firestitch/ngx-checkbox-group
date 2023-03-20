@@ -49,7 +49,7 @@
     "@firestitch/autocomplete-chips": "^10.2.5",
     "@firestitch/clear": "^8.1.0",
     "@firestitch/common": "^8.0.13",
-    "@firestitch/component-tools": "^12.0.8",
+    "@firestitch/component-tools": "^12.0.11",
     "@firestitch/date": "^8.0.28",
     "@firestitch/datepicker": "^12.0.1",
     "@firestitch/dialog": "^12.0.1",
