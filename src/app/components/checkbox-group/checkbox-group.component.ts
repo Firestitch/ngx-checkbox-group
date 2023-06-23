@@ -84,7 +84,6 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   }
 
   public ngAfterContentInit() {
-
     let changeDiff = this._differChildren.diff(this.contentChildren);
     if (changeDiff) {
       changeDiff.forEachAddedItem(change => {
