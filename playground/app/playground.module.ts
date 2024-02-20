@@ -16,28 +16,25 @@ import { AppMaterialModule } from './material.module';
 
 
 @NgModule({
-  bootstrap: [AppComponent],
-  imports: [
-    BrowserModule,
-    FsCheckboxGroupModule,
-    BrowserAnimationsModule,
-    AppMaterialModule,
-    FormsModule,
-    FlexLayoutModule,
-    FsExampleModule.forRoot(),
-    FsExampleModule.forRoot(),
-    FsMessageModule.forRoot(),
-    FsFormModule
-  ],
-  entryComponents: [
-  ],
-  declarations: [
-    AppComponent,
-    HorizontalComponent,
-    VerticalComponent
-  ],
-  providers: [
-  ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        FsCheckboxGroupModule,
+        BrowserAnimationsModule,
+        AppMaterialModule,
+        FormsModule,
+        FlexLayoutModule,
+        FsExampleModule.forRoot(),
+        FsExampleModule.forRoot(),
+        FsMessageModule.forRoot(),
+        FsFormModule
+    ],
+    declarations: [
+        AppComponent,
+        HorizontalComponent,
+        VerticalComponent
+    ],
+    providers: []
 })
 export class PlaygroundModule {
 }
