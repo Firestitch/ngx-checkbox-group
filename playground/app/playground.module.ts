@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +22,6 @@ import { AppMaterialModule } from './material.module';
         BrowserAnimationsModule,
         AppMaterialModule,
         FormsModule,
-        FlexLayoutModule,
         FsExampleModule.forRoot(),
         FsExampleModule.forRoot(),
         FsMessageModule.forRoot(),
