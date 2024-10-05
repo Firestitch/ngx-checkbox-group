@@ -178,7 +178,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   }
 
   public ngOnDestroy() {
-    this._destroy$.next();
+    this._destroy$.next(null);
     this._destroy$.complete();
   }
 }
