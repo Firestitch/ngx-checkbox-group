@@ -20,7 +20,7 @@
       &.orientation-vertical {
         display: block;
 
-        .mat-checkbox {
+        mat-checkbox {
           display: block;
           margin: 7px 0;
 
@@ -34,10 +34,10 @@
         }
 
         &.position-center {
-          .mat-checkbox-layout {
+          mat-checkbox-layout {
             align-items: center;
 
-            .mat-checkbox-inner-container {
+            mat-checkbox-inner-container {
               margin-top: initial;
               margin-bottom: initial;
             }
@@ -45,11 +45,11 @@
         }
 
         &.position-top {
-          .mat-checkbox-layout {
+          mat-checkbox-layout {
             white-space: normal;
             align-items: flex-start;
 
-            .mat-checkbox-inner-container {
+            mat-checkbox-inner-container {
               margin-top: unset;;
             }
           }
@@ -57,8 +57,8 @@
       }
     }
 
-    .mat-checkbox-layout {
-      .mat-checkbox-label {
+    mat-checkbox-layout {
+      mat-checkbox-label {
         line-height: normal;
       }
     }
