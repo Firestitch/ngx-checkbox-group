@@ -62,5 +62,13 @@
         line-height: normal;
       }
     }
+
+    .mat-internal-form-field {
+      align-items: flex-start;
+    }
+
+    .mdc-label {
+      padding: calc((var(--mdc-checkbox-state-layer-size, 40px) - 18px) / 2);
+    }
   }
 }

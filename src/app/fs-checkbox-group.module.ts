@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { MatInputModule } from '@angular/material/input';
 
 import { FsLabelModule } from '@firestitch/label';
@@ -8,18 +9,18 @@ import { FsCheckboxGroupComponent } from './components/checkbox-group/checkbox-g
 
 
 @NgModule({
-imports: [
-  CommonModule,
+  imports: [
+    CommonModule,
 
-  MatInputModule,
+    MatInputModule,
 
-  FsLabelModule,
-],
-declarations: [
-  FsCheckboxGroupComponent
-],
-exports: [
-  FsCheckboxGroupComponent
-]
+    FsLabelModule,
+  ],
+  declarations: [
+    FsCheckboxGroupComponent,
+  ],
+  exports: [
+    FsCheckboxGroupComponent,
+  ],
 })
 export class FsCheckboxGroupModule {}

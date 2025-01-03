@@ -8,13 +8,14 @@ import {
   HostBinding,
   Input,
   IterableDiffers,
+  OnChanges,
   OnDestroy,
   Output,
   QueryList,
-  OnChanges,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { MatCheckbox } from '@angular/material/checkbox';
 
 import { Subject } from 'rxjs';
@@ -24,13 +25,13 @@ import { isEqual, remove } from 'lodash-es';
 
 
 @Component({
-   selector: 'fs-checkbox-group',
-   templateUrl: './checkbox-group.component.html',
-   styleUrls: [ './checkbox-group.component.scss' ],
-   providers: [{
+  selector: 'fs-checkbox-group',
+  templateUrl: './checkbox-group.component.html',
+  styleUrls: ['./checkbox-group.component.scss'],
+  providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => FsCheckboxGroupComponent),
-    multi: true
+    multi: true,
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -52,28 +53,28 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   public disabled: boolean = null;
 
   @Input()
-  public compareWith = (o1: any, o2: any) => {
-    return isEqual(o1, o2)
-  };
+  public compareWith: (o1: any, o2: any) => boolean;
 
-  @HostBinding('class.fs-form-wrapper') formWrapper = true;
+  @HostBinding('class.fs-form-wrapper') public formWrapper = true;
 
   @ContentChildren(MatCheckbox)
   public contentChildren: QueryList<MatCheckbox>;
 
-  private innerValue: unknown[] = [];
+  public onTouchedCallback: () => void;
+  public onChangeCallback: (_: any) => void;
+
+  private _innerValue: unknown[] = [];
   private _destroy$ = new Subject();
   private _differChildren;
 
   constructor(
-    private iterableDiffers: IterableDiffers,
+    private _iterableDiffers: IterableDiffers,
     private _cdRef: ChangeDetectorRef,
   ) {
-    this._differChildren = this.iterableDiffers.find([]).create(null);
-  };
+    this.compareWith = this.compareWith || ((o1, o2) => isEqual(o1, o2));
+    this._differChildren = this._iterableDiffers.find([]).create(null);
+  }
 
-  private onTouchedCallback: () => void = () => { };
-  private onChangeCallback: (_: any) => void = () => { };
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.disabled !== null && changes.disabled && this.contentChildren) {
@@ -86,7 +87,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   public ngAfterContentInit() {
     let changeDiff = this._differChildren.diff(this.contentChildren);
     if (changeDiff) {
-      changeDiff.forEachAddedItem(change => {
+      changeDiff.forEachAddedItem((change) => {
         this._addCheckbox(change.item);
       });
     }
@@ -95,7 +96,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
       .pipe(
         takeUntil(this._destroy$),
       )
-      .subscribe(fsModelObjects => {
+      .subscribe((fsModelObjects) => {
         changeDiff = this._differChildren.diff(fsModelObjects);
         if (changeDiff) {
           changeDiff.forEachAddedItem((change) => {
@@ -107,59 +108,11 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
       });
   }
 
-  private _toggleInput(input) {
-    if (this.innerValue) {
-      input.checked = this._valueExists(input.value);
-    }
-  }
-
-  private _valueExists(inputValue) {
-    return this.innerValue.find((value) => {
-      return this.compareWith(value, inputValue);
-    }) !== undefined;
-  }
-
-  private _addCheckbox(input) {
-
-    if (this.disabled !== null) {
-      input.disabled = this.disabled;
-    }
-
-    this._toggleInput(input);
-    this._cdRef.markForCheck();
-
-    input.change
-    .pipe(
-      takeUntil(this._destroy$),
-    )
-    .subscribe((value) => {
-
-      if (value.checked) {
-
-        if (!this._valueExists(input.value)) {
-          this.innerValue.push(value.source.value);
-        }
-
-      } else {
-        remove(this.innerValue, (item) => {
-          return this.compareWith(item, input.value);
-        });
-      }
-
-      this.onChangeCallback(this.innerValue);
-      this.change.emit(this.innerValue);
-    });
-  }
-
   public writeValue(value: any) {
     if (Array.isArray(value)) {
-      this.innerValue = value;
+      this._innerValue = value;
     } else {
-      if (value !== undefined && value !== null) {
-        this.innerValue = [ value ];
-      } else {
-        this.innerValue = [];
-      }
+      this._innerValue = value !== undefined && value !== null ? [value] : [];
     }
 
     if (this.contentChildren) {
@@ -174,11 +127,55 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   }
 
   public registerOnTouched(fn: any) {
-      this.onTouchedCallback = fn;
+    this.onTouchedCallback = fn;
   }
 
   public ngOnDestroy() {
     this._destroy$.next(null);
     this._destroy$.complete();
+  }
+
+  private _toggleInput(input) {
+    if (this._innerValue) {
+      input.checked = this._valueExists(input.value);
+    }
+  }
+
+  private _valueExists(inputValue) {
+    return this._innerValue.find((value) => {
+      return this.compareWith(value, inputValue);
+    }) !== undefined;
+  }
+
+  private _addCheckbox(input) {
+
+    if (this.disabled !== null) {
+      input.disabled = this.disabled;
+    }
+
+    this._toggleInput(input);
+    this._cdRef.markForCheck();
+
+    input.change
+      .pipe(
+        takeUntil(this._destroy$),
+      )
+      .subscribe((value) => {
+
+        if (value.checked) {
+
+          if (!this._valueExists(input.value)) {
+            this._innerValue.push(value.source.value);
+          }
+
+        } else {
+          remove(this._innerValue, (item) => {
+            return this.compareWith(item, input.value);
+          });
+        }
+
+        this.onChangeCallback(this._innerValue);
+        this.change.emit(this._innerValue);
+      });
   }
 }
