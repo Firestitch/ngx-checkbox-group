@@ -68,7 +68,7 @@
     }
 
     .mdc-label {
-      padding: calc((var(--mdc-checkbox-state-layer-size, 40px) - 18px) / 2);
+      padding-top: calc((var(--mdc-checkbox-state-layer-size, 40px) - 18px) / 2);
     }
   }
 }
