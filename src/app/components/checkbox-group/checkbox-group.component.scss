@@ -9,7 +9,7 @@
     }
 
     .checkboxes {
-      &:not(.vertical) mat-checkbox {
+      &:not(.orientation-vertical) mat-checkbox {
         margin-right: 15px;
 
         &:last-child {
@@ -31,6 +31,10 @@
           &:last-child {
             margin-bottom: 0;
           }
+        }
+
+        .mdc-form-field {
+          width: 100%;  
         }
 
         &.position-center {
