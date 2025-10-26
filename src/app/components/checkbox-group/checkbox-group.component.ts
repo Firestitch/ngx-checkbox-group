@@ -1,19 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
-  ContentChildren,
-  EventEmitter,
-  forwardRef,
-  HostBinding,
-  Input,
-  IterableDiffers,
-  OnChanges,
-  OnDestroy,
-  Output,
-  QueryList,
-  SimpleChanges,
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, EventEmitter, forwardRef, HostBinding, Input, IterableDiffers, OnChanges, OnDestroy, Output, QueryList, SimpleChanges, inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -40,6 +25,9 @@ import { NgClass } from '@angular/common';
     imports: [FsLabelModule, NgClass],
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy, OnChanges {
+  private _iterableDiffers = inject(IterableDiffers);
+  private _cdRef = inject(ChangeDetectorRef);
+
 
   @Output()
   public change: EventEmitter<unknown[]> = new EventEmitter<unknown[]>();
@@ -71,10 +59,7 @@ export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueA
   private _destroy$ = new Subject();
   private _differChildren;
 
-  constructor(
-    private _iterableDiffers: IterableDiffers,
-    private _cdRef: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.compareWith = this.compareWith || ((o1, o2) => isEqual(o1, o2));
     this._differChildren = this._iterableDiffers.find([]).create(null);
   }
