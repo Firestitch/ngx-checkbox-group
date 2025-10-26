@@ -1,10 +1,23 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FsCheckboxGroupComponent } from '../../../../src/app/components/checkbox-group/checkbox-group.component';
+import { FormsModule } from '@angular/forms';
+import { FsFormModule } from '@firestitch/form';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
-  selector: 'vertical',
-  templateUrl: './vertical.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'vertical',
+    templateUrl: './vertical.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FsCheckboxGroupComponent,
+        FormsModule,
+        FsFormModule,
+        MatCheckbox,
+        JsonPipe,
+    ],
 })
 export class VerticalComponent implements OnInit {
 

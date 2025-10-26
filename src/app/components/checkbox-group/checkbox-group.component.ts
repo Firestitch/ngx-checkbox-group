@@ -22,18 +22,22 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { isEqual, remove } from 'lodash-es';
+import { FsLabelModule } from '@firestitch/label';
+import { NgClass } from '@angular/common';
 
 
 @Component({
-  selector: 'fs-checkbox-group',
-  templateUrl: './checkbox-group.component.html',
-  styleUrls: ['./checkbox-group.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => FsCheckboxGroupComponent),
-    multi: true,
-  }],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-checkbox-group',
+    templateUrl: './checkbox-group.component.html',
+    styleUrls: ['./checkbox-group.component.scss'],
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FsCheckboxGroupComponent),
+            multi: true,
+        }],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsLabelModule, NgClass],
 })
 export class FsCheckboxGroupComponent implements AfterContentInit, ControlValueAccessor, OnDestroy, OnChanges {
 
