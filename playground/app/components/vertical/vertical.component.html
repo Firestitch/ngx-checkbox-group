@@ -1,19 +1,20 @@
 <fs-checkbox-group
-    [(ngModel)]="selected"
-    name="selected"
-    label="Checkboxes"
-    position="center"
-    orientation="vertical">
-  <mat-checkbox
-      *ngFor="let item of items"
+  [(ngModel)]="selected"
+  name="selected"
+  label="Checkboxes"
+  position="center"
+  orientation="vertical">
+  @for (item of items; track item) {
+    <mat-checkbox
       [value]="item">
-    <div>
-      {{ item.name }}
-    </div>
-    <small>
-      Small text
-    </small>
-  </mat-checkbox>
+      <div>
+        {{ item.name }}
+      </div>
+      <small>
+        Small text
+      </small>
+    </mat-checkbox>
+  }
 </fs-checkbox-group>
 <fieldset>
   <legend>

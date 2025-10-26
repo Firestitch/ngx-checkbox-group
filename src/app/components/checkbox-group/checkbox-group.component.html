@@ -1,12 +1,13 @@
 <fs-label-field>
-  <fs-label
-      *ngIf="label"
+  @if (label) {
+    <fs-label
       class="fs-form-label">
-    {{ label }}
-  </fs-label>
+      {{ label }}
+    </fs-label>
+  }
   <ng-content></ng-content>
   <span
-      class="checkboxes"
+    class="checkboxes"
       [ngClass]="{
     'orientation-vertical': orientation==='vertical',
     'position-top': position==='top',

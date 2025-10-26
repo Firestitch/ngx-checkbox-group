@@ -6,7 +6,9 @@
     label="Checkboxes"
     orientation="horizontal"
     [fsFormRequired]="true">
-    <mat-checkbox *ngFor="let item of items" [value]="item" [disabled]="item.disabled">{{ item.name }}</mat-checkbox>
+    @for (item of items; track item) {
+      <mat-checkbox [value]="item" [disabled]="item.disabled">{{ item.name }}</mat-checkbox>
+    }
     <mat-hint>Hint hint hint!!!</mat-hint>
   </fs-checkbox-group>
 </form>
